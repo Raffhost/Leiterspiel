@@ -10,12 +10,10 @@ leds = [LED(pin) for pin in led_pins]
 button = Button(26)
 
 def all_leds_on():
-    
+    print("Button pressed!")
     for led in leds:
         led.on()
-
     sleep(1)
-    
     for led in leds:
         led.off()
 
