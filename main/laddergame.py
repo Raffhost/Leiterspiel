@@ -26,8 +26,8 @@ class Laddergame:
             self.__current_led().on()
 
     def start(self):
-        for i in range(len(self._leds)):
-            self._current_led_index = i
+        for led in range(len(self._leds)):
+            self._current_led_index = led
             self.__current_led().on()
             sleep(self._blink_time_s)
             self.__current_led().off()
