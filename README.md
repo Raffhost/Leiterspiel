@@ -1,2 +1,2 @@
 # Leiterspiel
-Leiterspiel besteht aus einem Taster und acht Leuchtdioden, die in einer Reihe angeordnet sind. Sie werden über den Raspberry Pi mit gpiozero angesteuert.
+A simple ladder-style game built with a Raspberry Pi, featuring a button input and eight LEDs controlled through the gpiozero Python library.
