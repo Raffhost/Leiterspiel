@@ -28,17 +28,21 @@ class Laddergame:
     def start(self):
         for led in range(len(self._leds)):
             self._current_led_index = led
-            # Мигание дважды: ON-OFF-ON-OFF с паузой между
             for blink in range(3):
+                
+                if blink == 0:
+                    sleep(0.2)
+                
                 self.__current_led().on()
                 sleep(0.1)
                 self.__current_led().off()
                 sleep(0.2)
-
-                if blink == 0:
-                    sleep(0.5)
             
             self.__current_led().on()
+        
+
+        for led in self._leds:
+            led.on()
 
 
 if __name__ == "__main__":
