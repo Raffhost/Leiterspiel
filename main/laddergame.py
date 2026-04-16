@@ -28,7 +28,7 @@ class Laddergame:
     def start(self):
         for led in range(len(self._leds)):
             self._current_led_index = led
-            for blink in range(3):
+            for blink in range(2):
                 
                 if blink == 0:
                     sleep(0.2)
@@ -40,9 +40,6 @@ class Laddergame:
             
             self.__current_led().on()
         
-
-        for led in self._leds:
-            led.on()
 
 
 if __name__ == "__main__":
