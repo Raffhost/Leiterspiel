@@ -48,3 +48,9 @@ class Laddergame:
 if __name__ == "__main__":
     game = Laddergame()
     game.start()
+    
+    try:
+        while True:
+            sleep(1)
+    except KeyboardInterrupt:
+        pass  # Ctrl+C to exit
