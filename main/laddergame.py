@@ -1,4 +1,4 @@
-from time import sleep
+from time import sleep, time
 from gpiozero import LED, Button
 from config import LED_PINS, BUTTON_PIN
 
@@ -25,26 +25,35 @@ class Laddergame:
         else:
             self.__current_led().on()
 
-    def start(self):
-        for led in range(len(self._leds)):
-            self._current_led_index = led
-            for blink in range(2):
-                
-                if blink == 0:
-                    sleep(0.2)
-                
-                self.__current_led().on()
-                sleep(0.1)
-                self.__current_led().off()
-                sleep(0.2)
-            
-            self.__current_led().on()
-        
+    # def start(self):
+    #     for led in range(len(self._leds)):
+    #         if not self._button.is_pressed:
+    #             self._current_led_index = led
+    #             pressed_the_button = False
+    #             pressed_in_time = False
 
+                
+    #             while not pressed_the_button:
+    #                 self.__current_led().on()
+    #                 sleep(0.6)
+                    
+    #                 if self._button.is_pressed and pressed_in_time:
+    #                     pressed_the_button = True
+    #                     pressed_in_time = True
+                        
+                    
+    #                 self.__current_led().off()
+    #                 sleep(0.3)
+
+    #                 if self._button.is_pressed:
+    #                     pass
+
+#NEED TO MAKE A METHOD TO CHECK IF THE BUTTON WAS PRESSED IN TIME, AND IF NOT, THEN THE GAME IS OVER
+        
 
 if __name__ == "__main__":
     game = Laddergame()
-    game.start()
+    #game.start()
     
     try:
         while True:
