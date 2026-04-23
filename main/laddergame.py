@@ -54,7 +54,7 @@ class Laddergame:
 
 if __name__ == "__main__":
     game = Laddergame()
-    #game.start()
+    game.start()
     
     try:
         while True:
