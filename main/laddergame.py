@@ -25,31 +25,32 @@ class Laddergame:
         else:
             self.__current_led().on()
 
-    # def start(self):
-    #     for led in range(len(self._leds)):
-    #         if not self._button.is_pressed:
-    #             self._current_led_index = led
-    #             pressed_the_button = False
-    #             pressed_in_time = False
+    def start(self):
+        print("Starte Leiterspiel")
+        time_last_change = time()
+        running = True
 
-                
-    #             while not pressed_the_button:
-    #                 self.__current_led().on()
-    #                 sleep(0.6)
-                    
-    #                 if self._button.is_pressed and pressed_in_time:
-    #                     pressed_the_button = True
-    #                     pressed_in_time = True
-                        
-                    
-    #                 self.__current_led().off()
-    #                 sleep(0.3)
+        while running == True:
+            if self._button.is_pressed:
+                if self._current_led_is_on():
+                    self._next_level
+                    if self._current_led_index == len(self._leds):
+                        print("Gewonnen")
+                        running = False
+                    sleep(self.__debounce_ms/1000) # Debounce
+                    print("Next level:", self._current_led_index)
+                else:
+                    print("Verloren")
+                    running = False
 
-    #                 if self._button.is_pressed:
-    #                     pass
+            if time() - time_last_change > self._blink_time_s:
+                self._flip_current_led()
+                time_last_change = time()
 
-#NEED TO MAKE A METHOD TO CHECK IF THE BUTTON WAS PRESSED IN TIME, AND IF NOT, THEN THE GAME IS OVER
-        
+        print("Spiel beendet.")
+
+
+
 
 if __name__ == "__main__":
     game = Laddergame()
