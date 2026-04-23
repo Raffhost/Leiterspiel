@@ -6,7 +6,7 @@ class Laddergame:
     def __init__(self, led_pins=LED_PINS, button_pin=BUTTON_PIN):
         self._current_led_index = 0
         self._leds = [LED(pin) for pin in led_pins]
-        self._button = Button(button_pin)
+        self._button = Button(button_pin, pull_up=False)
         self.__debounce_ms = 200
         self._blink_time_s = 1
 
@@ -33,7 +33,7 @@ class Laddergame:
         while running == True:
             if self._button.is_pressed:
                 if self._current_led_is_on():
-                    self._next_level
+                    self._next_level()
                     if self._current_led_index == len(self._leds):
                         print("Gewonnen")
                         running = False
@@ -42,6 +42,7 @@ class Laddergame:
                 else:
                     print("Verloren")
                     running = False
+                    break
 
             if time() - time_last_change > self._blink_time_s:
                 self._flip_current_led()
@@ -55,6 +56,7 @@ class Laddergame:
 if __name__ == "__main__":
     game = Laddergame()
     game.start()
+
     
     try:
         while True:
