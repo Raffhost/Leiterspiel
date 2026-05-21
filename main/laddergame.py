@@ -1,6 +1,6 @@
 from time import sleep, time
 from gpiozero import LED, Button
-from config import LED_PINS, BUTTON_PIN
+from config import LED_PINS, BUTTON_PIN, HIGHSCORE_FILE
 
 class Laddergame:
     def __init__(self, led_pins=LED_PINS, button_pin=BUTTON_PIN):
@@ -45,7 +45,7 @@ class Laddergame:
                     running = False
                     break
 
-            if time() - time_last_change > self._blink_time_s:
+            if time() - time_last_change > self._blink_time_s: # Blink current LED jede Sekunde
                 self._flip_current_led()
                 time_last_change = time()
 
