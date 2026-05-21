@@ -1,6 +1,7 @@
 from time import sleep, time
 from gpiozero import LED, Button
-from config import LED_PINS, BUTTON_PIN, HIGHSCORE_FILE
+from config import LED_PINS, BUTTON_PIN
+from highscores import Highscores
 
 class Laddergame:
     def __init__(self, led_pins=LED_PINS, button_pin=BUTTON_PIN):
@@ -29,6 +30,7 @@ class Laddergame:
         print("Starte Leiterspiel")
         time_last_change = time()
         running = True
+        highscores = Highscores()
 
         while running == True:
             if self._button.is_pressed:
@@ -38,6 +40,8 @@ class Laddergame:
                     if self._current_led_index == len(self._leds):
                         print("Gewonnen")
                         running = False
+                        print("Deine Punktzahl:", self._current_led_index)
+                        break
                     sleep(self.__debounce_ms/1000) # Debounce
                     print("Next level:", self._current_led_index)
                 else:
@@ -45,14 +49,15 @@ class Laddergame:
                     running = False
                     break
 
+
             if time() - time_last_change > self._blink_time_s: # Blink current LED jede Sekunde
                 self._flip_current_led()
                 time_last_change = time()
-
+                
+        name = input("Write your name: ")
+        highscores.add_highscore(name, self._current_led_index)
+        highscores.save_highscores()
         print("Spiel beendet.")
-
-
-
 
 if __name__ == "__main__":
     game = Laddergame()
