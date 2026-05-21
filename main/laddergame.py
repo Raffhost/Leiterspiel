@@ -53,10 +53,11 @@ class Laddergame:
             if time() - time_last_change > self._blink_time_s: # Blink current LED jede Sekunde
                 self._flip_current_led()
                 time_last_change = time()
-                
+
         name = input("Write your name: ")
         highscores.add_highscore(name, self._current_led_index)
         highscores.save_highscores()
+        highscores.display()
         print("Spiel beendet.")
 
 if __name__ == "__main__":
