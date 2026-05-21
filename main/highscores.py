@@ -5,6 +5,11 @@ class Highscores:
     def __init__(self, file=HIGHSCORE_FILE):
         self._highscore_file = file
         self._highscores = []
+        try:
+            with open(self._highscore_file, "r", encoding="utf-8") as json_file:
+                self._highscores = json.load(json_file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            self._highscores = []
 
     def display(self):
         print("Highscores:")
